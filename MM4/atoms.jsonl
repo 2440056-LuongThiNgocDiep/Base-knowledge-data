@@ -1,0 +1,20 @@
+{"id":"func.log.definition","unit":"MM4","code":"ACMMM151","description":"Define logarithms as indices: a^x = b is equivalent to x = log_a(b)."}
+{"id":"func.log.product_rule","unit":"MM4","code":"ACMMM152","description":"Use the product rule for logarithms: log_a(xy) = log_a(x) + log_a(y)."}
+{"id":"func.log.quotient_rule","unit":"MM4","code":"ACMMM152","description":"Use the quotient rule for logarithms: log_a(x/y) = log_a(x) - log_a(y)."}
+{"id":"func.log.power_rule","unit":"MM4","code":"ACMMM152","description":"Use the power rule for logarithms: log_a(x^k) = k log_a(x)."}
+{"id":"func.log.decibel","unit":"MM4","code":"ACMMM154","description":"Interpret a logarithmic scale using L = 10 log_10(I/I_0)."}
+{"id":"func.log.equation","unit":"MM4","code":"ACMMM157","description":"Solve log_a(x) = value by converting to x = a^value."}
+{"id":"func.log.natural","unit":"MM4","code":"ACMMM159","description":"Define the natural logarithm ln(x) = log_e(x)."}
+{"id":"func.log.exp_ln_inverse","unit":"MM4","code":"ACMMM160","description":"Use the inverse relationship between e^x and ln(x), including e^(ln x) = x."}
+{"id":"func.log.ln_derivative","unit":"MM4","code":"ACMMM161","description":"Use d/dx(ln x) = 1/x."}
+{"id":"prob.continuous.relative_frequency","unit":"MM4","code":"ACMMM164","description":"Estimate probabilities from relative frequency count/total."}
+{"id":"prob.continuous.probability","unit":"MM4","code":"ACMMM165","description":"Calculate continuous probabilities by integrating a probability density function over an interval."}
+{"id":"prob.continuous.cdf","unit":"MM4","code":"ACMMM165","description":"Calculate a cumulative distribution function by integrating the probability density function from the lower support endpoint."}
+{"id":"prob.continuous.expected_value","unit":"MM4","code":"ACMMM166","description":"Calculate E(X) = integral of x f(x) dx for a continuous random variable."}
+{"id":"prob.continuous.variance","unit":"MM4","code":"ACMMM166","description":"Calculate Var(X) = E(X^2) - [E(X)]^2."}
+{"id":"prob.continuous.linear_transform","unit":"MM4","code":"ACMMM167","description":"For Y = aX + b, determine E(Y) = aE(X)+b and SD(Y) = |a|SD(X)."}
+{"id":"prob.normal.standardize","unit":"MM4","code":"ACMMM169","description":"Standardize a normal-distribution value using z = (x-mu)/sigma."}
+{"id":"prob.proportion.distribution","unit":"MM4","code":"ACMMM174","description":"Determine E(p_hat) = p and SD(p_hat) = sqrt(p(1-p)/n)."}
+{"id":"prob.proportion.standardize","unit":"MM4","code":"ACMMM176","description":"Standardize a sample proportion using (p_hat-p)/sqrt(p_hat(1-p_hat)/n)."}
+{"id":"prob.proportion.confidence_interval","unit":"MM4","code":"ACMMM178","description":"Calculate an approximate confidence interval for a population proportion."}
+{"id":"prob.proportion.margin_error","unit":"MM4","code":"ACMMM179","description":"Calculate E = z sqrt(p_hat(1-p_hat)/n)."}
