@@ -1,0 +1,75 @@
+unit	code	topic	strand	content_description	atom_id	decision	template_id
+Unit 4	ACMMM151	Topic 1: The logarithmic function	Logarithmic functions	define logarithms as indices	func.log.definition	include	mm4_log_definition_value
+Unit 4	ACMMM151	Topic 1: The logarithmic function	Logarithmic functions	define logarithms as indices	func.log.definition	include	mm4_log_definition_equation
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms	func.log.product_rule	include	mm4_log_product_split
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms	func.log.product_rule	include	mm4_log_product_rewrite
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms	func.log.quotient_rule	include	mm4_log_quotient_split
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms	func.log.quotient_rule	include	mm4_log_quotient_rewrite
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms	func.log.power_rule	include	mm4_log_power_expand
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms	func.log.power_rule	include	mm4_log_power_rewrite
+Unit 4	ACMMM154	Topic 1: The logarithmic function	Logarithmic functions	interpret and use logarithmic scales	func.log.decibel	include	mm4_log_decibel_level
+Unit 4	ACMMM154	Topic 1: The logarithmic function	Logarithmic functions	interpret and use logarithmic scales	func.log.decibel	include	mm4_log_decibel_acoustics
+Unit 4	ACMMM157	Topic 1: The logarithmic function	Logarithmic functions	solve simple equations involving logarithmic functions algebraically and graphically	func.log.equation	include	mm4_log_equation_solve
+Unit 4	ACMMM157	Topic 1: The logarithmic function	Logarithmic functions	solve simple equations involving logarithmic functions algebraically and graphically	func.log.equation	include	mm4_log_equation_inverse
+Unit 4	ACMMM159	Topic 1: The logarithmic function	Calculus of logarithmic functions	define the natural logarithm ln x = log_e x	func.log.natural	include	mm4_log_natural_value
+Unit 4	ACMMM159	Topic 1: The logarithmic function	Calculus of logarithmic functions	define the natural logarithm ln x = log_e x	func.log.natural	include	mm4_log_natural_context
+Unit 4	ACMMM160	Topic 1: The logarithmic function	Calculus of logarithmic functions	recognise inverse relationship of e^x and ln x	func.log.exp_ln_inverse	include	mm4_log_exp_ln_inverse
+Unit 4	ACMMM160	Topic 1: The logarithmic function	Calculus of logarithmic functions	recognise inverse relationship of e^x and ln x	func.log.exp_ln_inverse	include	mm4_log_exp_ln_identity
+Unit 4	ACMMM161	Topic 1: The logarithmic function	Calculus of logarithmic functions	establish and use d/dx(ln x)=1/x	func.log.ln_derivative	include	mm4_log_ln_derivative_point
+Unit 4	ACMMM161	Topic 1: The logarithmic function	Calculus of logarithmic functions	establish and use d/dx(ln x)=1/x	func.log.ln_derivative	include	mm4_log_ln_derivative_rate
+Unit 4	ACMMM164	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	use relative frequencies and histograms to estimate probabilities for continuous random variables	prob.continuous.relative_frequency	include	mm4_continuous_relative_frequency
+Unit 4	ACMMM164	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	use relative frequencies and histograms to estimate probabilities for continuous random variables	prob.continuous.relative_frequency	include	mm4_continuous_relative_frequency_inverse
+Unit 4	ACMMM165	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	understand PDF, CDF and probabilities associated with continuous random variables	prob.continuous.probability	include	mm4_continuous_probability_interval
+Unit 4	ACMMM165	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	understand PDF, CDF and probabilities associated with continuous random variables	prob.continuous.probability	include	mm4_continuous_probability_area
+Unit 4	ACMMM165	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	understand PDF, CDF and probabilities associated with continuous random variables	prob.continuous.cdf	include	mm4_continuous_cdf_value
+Unit 4	ACMMM165	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	understand PDF, CDF and probabilities associated with continuous random variables	prob.continuous.cdf	include	mm4_continuous_cdf_probability
+Unit 4	ACMMM166	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	recognise and evaluate expected value, variance and standard deviation	prob.continuous.expected_value	include	mm4_continuous_expected_value
+Unit 4	ACMMM166	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	recognise and evaluate expected value, variance and standard deviation	prob.continuous.expected_value	include	mm4_continuous_expected_value_moment
+Unit 4	ACMMM166	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	recognise and evaluate expected value, variance and standard deviation	prob.continuous.variance	include	mm4_continuous_variance
+Unit 4	ACMMM166	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	recognise and evaluate expected value, variance and standard deviation	prob.continuous.variance	include	mm4_continuous_variance_spread
+Unit 4	ACMMM167	Topic 2: Continuous random variables and the normal distribution	General continuous random variables	understand effects of linear changes of scale and origin on mean and standard deviation	prob.continuous.linear_transform	include	mm4_continuous_linear_transform
+Unit 4	ACMMM167	Topic 2: Continuous random variables and the normal distribution	General continuous random variables	understand effects of linear changes of scale and origin on mean and standard deviation	prob.continuous.linear_transform	include	mm4_continuous_linear_transform_context
+Unit 4	ACMMM169	Topic 2: Continuous random variables and the normal distribution	Normal distributions	recognise features of normal PDF and standard normal distribution	prob.normal.standardize	include	mm4_normal_standardize_score
+Unit 4	ACMMM169	Topic 2: Continuous random variables and the normal distribution	Normal distributions	recognise features of normal PDF and standard normal distribution	prob.normal.standardize	include	mm4_normal_standardize_context
+Unit 4	ACMMM174	Topic 3: Interval estimates for proportions	Sample proportions	understand sample proportion as a random variable and its mean and standard deviation	prob.proportion.distribution	include	mm4_proportion_distribution
+Unit 4	ACMMM174	Topic 3: Interval estimates for proportions	Sample proportions	understand sample proportion as a random variable and its mean and standard deviation	prob.proportion.distribution	include	mm4_proportion_distribution_sampling
+Unit 4	ACMMM178	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	use approximate confidence interval for a population proportion	prob.proportion.confidence_interval	include	mm4_proportion_confidence_interval
+Unit 4	ACMMM178	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	use approximate confidence interval for a population proportion	prob.proportion.confidence_interval	include	mm4_proportion_confidence_interval_report
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off	prob.proportion.margin_error	include	mm4_proportion_margin_error
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off	prob.proportion.margin_error	include	mm4_proportion_margin_error_interpret
+Unit 4	ACMMM176	Topic 3: Interval estimates for proportions	Sample proportions	simulate repeated sampling and examine approximate standard normality	prob.proportion.standardize	include	mm4_proportion_standardize
+Unit 4	ACMMM176	Topic 3: Interval estimates for proportions	Sample proportions	simulate repeated sampling and examine approximate standard normality	prob.proportion.standardize	include	mm4_proportion_standardize_sampling
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms		include	mm4_composite_01
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms		include	mm4_composite_02
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms		include	mm4_composite_03
+Unit 4	ACMMM159	Topic 1: The logarithmic function	Calculus of logarithmic functions	define the natural logarithm ln x = log_e x		include	mm4_composite_04
+Unit 4	ACMMM161	Topic 1: The logarithmic function	Calculus of logarithmic functions	establish and use d/dx(ln x)=1/x		include	mm4_composite_05
+Unit 4	ACMMM154	Topic 1: The logarithmic function	Logarithmic functions	interpret and use logarithmic scales		include	mm4_composite_06
+Unit 4	ACMMM165	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	understand PDF, CDF and probabilities associated with continuous random variables		include	mm4_composite_07
+Unit 4	ACMMM165	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	understand PDF, CDF and probabilities associated with continuous random variables		include	mm4_composite_08
+Unit 4	ACMMM166	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	recognise and evaluate expected value, variance and standard deviation		include	mm4_composite_09
+Unit 4	ACMMM165	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	understand PDF, CDF and probabilities associated with continuous random variables		include	mm4_composite_10
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms		include	mm4_composite_11
+Unit 4	ACMMM159	Topic 1: The logarithmic function	Calculus of logarithmic functions	define the natural logarithm ln x = log_e x		include	mm4_composite_12
+Unit 4	ACMMM157	Topic 1: The logarithmic function	Logarithmic functions	solve simple equations involving logarithmic functions algebraically and graphically		include	mm4_composite_13
+Unit 4	ACMMM161	Topic 1: The logarithmic function	Calculus of logarithmic functions	establish and use d/dx(ln x)=1/x		include	mm4_composite_14
+Unit 4	ACMMM161	Topic 1: The logarithmic function	Calculus of logarithmic functions	establish and use d/dx(ln x)=1/x		include	mm4_composite_15
+Unit 4	ACMMM167	Topic 2: Continuous random variables and the normal distribution	General continuous random variables	understand effects of linear changes of scale and origin on mean and standard deviation		include	mm4_composite_16
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off		include	mm4_composite_17
+Unit 4	ACMMM178	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	use approximate confidence interval for a population proportion		include	mm4_composite_18
+Unit 4	ACMMM167	Topic 2: Continuous random variables and the normal distribution	General continuous random variables	understand effects of linear changes of scale and origin on mean and standard deviation		include	mm4_composite_19
+Unit 4	ACMMM178	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	use approximate confidence interval for a population proportion		include	mm4_composite_20
+Unit 4	ACMMM176	Topic 3: Interval estimates for proportions	Sample proportions	simulate repeated sampling and examine approximate standard normality		include	mm4_composite_21
+Unit 4	ACMMM159	Topic 1: The logarithmic function	Calculus of logarithmic functions	define the natural logarithm ln x = log_e x		include	mm4_composite_22
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms		include	mm4_composite_23
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off		include	mm4_composite_24
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms		include	mm4_composite_25
+Unit 4	ACMMM167	Topic 2: Continuous random variables and the normal distribution	General continuous random variables	understand effects of linear changes of scale and origin on mean and standard deviation		include	mm4_composite_26
+Unit 4	ACMMM176	Topic 3: Interval estimates for proportions	Sample proportions	simulate repeated sampling and examine approximate standard normality		include	mm4_composite_27
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms		include	mm4_composite_28
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off		include	mm4_composite_29
+Unit 4	ACMMM167	Topic 2: Continuous random variables and the normal distribution	General continuous random variables	understand effects of linear changes of scale and origin on mean and standard deviation		include	mm4_composite_30
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off		include	mm4_composite_31
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off		include	mm4_composite_32
+Unit 4	ACMMM167	Topic 2: Continuous random variables and the normal distribution	General continuous random variables	understand effects of linear changes of scale and origin on mean and standard deviation		include	mm4_composite_33
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off		include	mm4_composite_34

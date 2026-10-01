@@ -1,0 +1,31 @@
+unit	code	topic	strand	content_description	atom_id	decision
+Unit 4	ACMMM151	Topic 1: The logarithmic function	Logarithmic functions	define logarithms as indices	func.log.definition	include
+Unit 4	ACMMM152	Topic 1: The logarithmic function	Logarithmic functions	establish and use algebraic properties of logarithms	func.log.product_rule;func.log.quotient_rule;func.log.power_rule	include
+Unit 4	ACMMM153	Topic 1: The logarithmic function	Logarithmic functions	recognise inverse relationship between logarithms and exponentials		defer
+Unit 4	ACMMM154	Topic 1: The logarithmic function	Logarithmic functions	interpret and use logarithmic scales	func.log.decibel	include
+Unit 4	ACMMM155	Topic 1: The logarithmic function	Logarithmic functions	solve equations involving indices using logarithms		defer
+Unit 4	ACMMM156	Topic 1: The logarithmic function	Logarithmic functions	recognise qualitative features of logarithmic graphs and translations		defer
+Unit 4	ACMMM157	Topic 1: The logarithmic function	Logarithmic functions	solve simple equations involving logarithmic functions algebraically and graphically	func.log.equation	include
+Unit 4	ACMMM158	Topic 1: The logarithmic function	Logarithmic functions	identify contexts suitable for logarithmic modelling and solve practical problems		defer
+Unit 4	ACMMM159	Topic 1: The logarithmic function	Calculus of logarithmic functions	define the natural logarithm ln x = log_e x	func.log.natural	include
+Unit 4	ACMMM160	Topic 1: The logarithmic function	Calculus of logarithmic functions	recognise inverse relationship of e^x and ln x	func.log.exp_ln_inverse	include
+Unit 4	ACMMM161	Topic 1: The logarithmic function	Calculus of logarithmic functions	establish and use d/dx(ln x)=1/x	func.log.ln_derivative	include
+Unit 4	ACMMM162	Topic 1: The logarithmic function	Calculus of logarithmic functions	establish and use integral 1/x dx = ln x + c		defer
+Unit 4	ACMMM163	Topic 1: The logarithmic function	Calculus of logarithmic functions	use logarithmic functions and derivatives to solve practical problems		defer
+Unit 4	ACMMM164	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	use relative frequencies and histograms to estimate probabilities for continuous random variables	prob.continuous.relative_frequency	include
+Unit 4	ACMMM165	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	understand PDF, CDF and probabilities associated with continuous random variables	prob.continuous.probability;prob.continuous.cdf	include
+Unit 4	ACMMM166	Topic 2: Continuous random variables and the normal distribution	General discrete random variables	recognise and evaluate expected value, variance and standard deviation	prob.continuous.expected_value;prob.continuous.variance	include
+Unit 4	ACMMM167	Topic 2: Continuous random variables and the normal distribution	General continuous random variables	understand effects of linear changes of scale and origin on mean and standard deviation	prob.continuous.linear_transform	include
+Unit 4	ACMMM168	Topic 2: Continuous random variables and the normal distribution	Normal distributions	identify contexts suitable for normal modelling		defer
+Unit 4	ACMMM169	Topic 2: Continuous random variables and the normal distribution	Normal distributions	recognise features of normal PDF and standard normal distribution	prob.normal.standardize	include
+Unit 4	ACMMM170	Topic 2: Continuous random variables and the normal distribution	Normal distributions	calculate probabilities and quantiles for a normal distribution using technology		defer
+Unit 4	ACMMM171	Topic 3: Interval estimates for proportions	Random sampling	understand concept of a random sample		defer
+Unit 4	ACMMM172	Topic 3: Interval estimates for proportions	Random sampling	discuss sources of bias and procedures to ensure randomness		defer
+Unit 4	ACMMM173	Topic 3: Interval estimates for proportions	Random sampling	use graphical displays of simulated data to investigate variability of random samples		defer
+Unit 4	ACMMM174	Topic 3: Interval estimates for proportions	Sample proportions	understand sample proportion as a random variable and its mean and standard deviation	prob.proportion.distribution	include
+Unit 4	ACMMM175	Topic 3: Interval estimates for proportions	Sample proportions	examine approximate normality of sample proportion for large samples		defer
+Unit 4	ACMMM176	Topic 3: Interval estimates for proportions	Sample proportions	simulate repeated sampling and examine approximate standard normality	prob.proportion.standardize	include
+Unit 4	ACMMM177	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	understand concept of an interval estimate for a parameter		defer
+Unit 4	ACMMM178	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	use approximate confidence interval for a population proportion	prob.proportion.confidence_interval	include
+Unit 4	ACMMM179	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	define approximate margin of error and understand confidence/error trade-off	prob.proportion.margin_error	include
+Unit 4	ACMMM180	Topic 3: Interval estimates for proportions	Confidence intervals for proportions	use simulation to illustrate variation in confidence intervals		defer

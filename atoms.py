@@ -1,138 +1,366 @@
 from fractions import Fraction
 import sympy as sp
 
-from kernel import atom, REGISTRY, KIND, render
+from kernel import atom
 
 
-@atom("func.direct_proportion.constant_ratio")
-def direct_proportion_constant_ratio(y, x):
-    return Fraction(y, x)
+def _require_positive(value, message):
+    """Require an exact SymPy expression to be strictly positive.
+
+    SymPy does not always infer positivity for expressions such as sums of
+    positive logarithms, even when their concrete value is positive.
+    Composite graphs are evaluated on concrete draws, so an exact numerical
+    fallback is safe here.
+    """
+    value = sp.sympify(value)
+    if value.is_positive is True:
+        return value
+    if value.is_real is True:
+        try:
+            if bool(value.evalf(50) > 0):
+                return value
+        except Exception:
+            pass
+    raise ValueError(message)
+
+# Topic 1. The logarithmic function
+
+@atom("func.log.definition")
+def log_definition(base, value):
+    # ACMMM151
+    # a^x = b  <=>  x = log_a(b)
+    base = sp.sympify(base)
+    value = sp.sympify(value)
+
+    if base.is_positive is not True or base == 1:
+        raise ValueError("logarithm base must be positive and different from 1")
+    if value.is_positive is not True:
+        raise ValueError("logarithm argument must be positive")
+
+    return sp.simplify(sp.log(value) / sp.log(base))
 
 
-@atom("func.inv_proportion.definition")
-def inv_proportion_constant(x, y):
-    return x * y
+@atom("func.log.product_rule")
+def log_product_rule(base, x, y):
+    # ACMMM152
+    # log_a(xy) = log_a(x) + log_a(y)
+    base = sp.sympify(base)
+    x = sp.sympify(x)
+    y = sp.sympify(y)
+
+    if base.is_positive is not True or base == 1:
+        raise ValueError("logarithm base must be positive and different from 1")
+    _require_positive(x, "logarithm arguments must be positive")
+    _require_positive(y, "logarithm arguments must be positive")
+
+    return sp.simplify(sp.log(x, base) + sp.log(y, base))
 
 
-@atom("func.inv_proportion.evaluate")
-def inv_proportion_evaluate(k, x):
-    return Fraction(k, x)
+@atom("func.log.quotient_rule")
+def log_quotient_rule(base, x, y):
+    # ACMMM152
+    # log_a(x/y) = log_a(x) - log_a(y)
+    base = sp.sympify(base)
+    x = sp.sympify(x)
+    y = sp.sympify(y)
+
+    if base.is_positive is not True or base == 1:
+        raise ValueError("logarithm base must be positive and different from 1")
+    _require_positive(x, "logarithm arguments must be positive")
+    _require_positive(y, "logarithm arguments must be positive")
+
+    return sp.simplify(sp.log(x, base) - sp.log(y, base))
 
 
-@atom("func.linear_solve.one_step")
-def linear_solve_one_step(a, b):
-    return Fraction(b, a)
+@atom("func.log.power_rule")
+def log_power_rule(base, x, power):
+    # ACMMM152
+    # log_a(x^k) = k log_a(x)
+    base = sp.sympify(base)
+    x = sp.sympify(x)
+    power = sp.sympify(power)
+
+    if base.is_positive is not True or base == 1:
+        raise ValueError("logarithm base must be positive and different from 1")
+    _require_positive(x, "logarithm argument must be positive")
+
+    return sp.simplify(power * sp.log(x, base))
 
 
-@atom("func.quad_general.axis")
-def quad_general_axis(coeffs):
-    a, b, _ = coeffs
-    return Fraction(-b, 2 * a)
+@atom("func.log.decibel")
+def log_decibel(intensity, reference):
+    # ACMMM154
+    # Decibel scale: L = 10 log_10(I / I_0)
+    intensity = sp.sympify(intensity)
+    reference = sp.sympify(reference)
+
+    if intensity.is_positive is not True or reference.is_positive is not True:
+        raise ValueError("intensity and reference must be positive")
+
+    return sp.simplify(10 * sp.log(intensity / reference, 10))
 
 
-@atom("func.quad_general.y_intercept")
-def quad_general_y_intercept(coeffs):
-    return coeffs[-1]
+@atom("func.log.equation")
+def log_equation(base, value):
+    # ACMMM157
+    # Solve log_a(x) = value, so x = a^value.
+    base = sp.sympify(base)
+    value = sp.sympify(value)
+
+    if base.is_positive is not True or base == 1:
+        raise ValueError("logarithm base must be positive and different from 1")
+
+    return sp.simplify(base ** value)
 
 
-@atom("func.poly.quadratic_two_linear")
-def poly_quadratic_two_linear(a, b):
-    return (1, -(a + b), a * b)
+@atom("func.log.natural")
+def log_natural(value):
+    # ACMMM159
+    # ln(x) = log_e(x)
+    value = sp.sympify(value)
+
+    _require_positive(value, "natural logarithm argument must be positive")
+    return sp.log(value)
 
 
+@atom("func.log.exp_ln_inverse")
+def log_exp_ln_inverse(value):
+    # ACMMM160
+    # Uses the inverse relationship e^(ln x) = x.
+    value = sp.sympify(value)
+
+    if value.is_positive is not True:
+        raise ValueError("value must be positive")
+
+    return sp.simplify(sp.exp(sp.log(value)))
 
 
-@atom("func.poly.factor_theorem")
-def poly_factor_theorem(p_at_a):
-    return "yes" if p_at_a == 0 else "no"
+@atom("func.log.ln_derivative")
+def log_ln_derivative(value):
+    # ACMMM161
+    # d/dx (ln x) = 1/x, evaluated at x = value.
+    value = sp.sympify(value)
+
+    if value.is_zero is True:
+        raise ValueError("value must not be zero")
+
+    return sp.simplify(1 / value)
 
 
-@atom("func.poly.cubic_factor_quotient")
-def poly_cubic_factor_quotient(a, b, c, d):
-    if a**3 + b * a**2 + c * a + d != 0:
-        raise ValueError("(x - a) is not a factor")
-    q1 = b + a
-    return (1, q1, c + a * q1)
+# Topic 2. Continuous random variables and the normal distribution
+
+def _integral_bounds(pdf, variable, lower, upper, require_normalized=False):
+    pdf = sp.sympify(pdf)
+    variable = sp.sympify(variable)
+    lower = sp.sympify(lower)
+    upper = sp.sympify(upper)
+
+    if not bool(lower < upper):
+        raise ValueError("lower must be less than upper")
+
+    area = sp.simplify(sp.integrate(pdf, (variable, lower, upper)))
+    if not bool(area >= 0):
+        raise ValueError("PDF area must be non-negative")
+    if require_normalized and area != 1:
+        raise ValueError("PDF must integrate to exactly 1 on its support")
+    return pdf, variable, lower, upper, area
 
 
-@atom("func.poly.cubic_three_linear")
-def poly_cubic_three_linear(a, b, c):
-    return (1, -(a + b + c), a*b + b*c + c*a, -(a * b * c))
+@atom("prob.continuous.relative_frequency")
+def continuous_relative_frequency(count, total):
+    # ACMMM164
+    # Estimate a probability from a relative frequency: count / total.
+    if not isinstance(count, int) or not isinstance(total, int):
+        raise TypeError("count and total must be integers")
+    if total <= 0:
+        raise ValueError("total must be positive")
+    if count < 0 or count > total:
+        raise ValueError("count must satisfy 0 <= count <= total")
+
+    return Fraction(count, total)
 
 
-@atom("func.transform.poly_vertical_translation")
-def poly_vertical_translation(coeffs, a):
-    return tuple(coeffs[:-1]) + (coeffs[-1] + a,)
+@atom("prob.continuous.probability")
+def continuous_probability(pdf, variable, lower, upper):
+    # ACMMM165
+    # P(lower < X < upper) = integral of f(x) over the interval.
+    pdf, variable, lower, upper, area = _integral_bounds(
+        pdf, variable, lower, upper
+    )
+    if not bool(area <= 1):
+        raise ValueError("probability must lie in [0, 1]")
+    return area
 
 
-@atom("func.transform.poly_vertical_dilation")
-def poly_vertical_dilation(coeffs, c):
-    return tuple(c * k for k in coeffs)
+@atom("prob.continuous.cdf")
+def continuous_cdf(pdf, variable, lower_support, value):
+    # ACMMM165
+    # F(x) = integral of f(t) from the lower support endpoint to x.
+    variable = sp.sympify(variable)
+    lower_support = sp.sympify(lower_support)
+    value = sp.sympify(value)
+    pdf = sp.sympify(pdf)
+
+    if not bool(lower_support <= value):
+        raise ValueError("value must not be below the lower support")
+
+    result = sp.simplify(sp.integrate(pdf, (variable, lower_support, value)))
+    if not bool(result >= 0) or not bool(result <= 1):
+        raise ValueError("CDF value must lie in [0, 1]")
+    return result
 
 
-@atom("func.hyperbola.evaluate")
-def hyperbola_evaluate(a, b, d, x):
-    if x == b:
-        raise ValueError("x is the vertical asymptote")
-    return Fraction(a, x - b) + d
+@atom("prob.continuous.expected_value")
+def continuous_expected_value(pdf, variable, lower, upper):
+    # ACMMM166
+    # E(X) = integral of x f(x) dx over the full support.
+    pdf, variable, lower, upper, _ = _integral_bounds(
+        pdf, variable, lower, upper, require_normalized=True
+    )
+    return sp.simplify(
+        sp.integrate(variable * pdf, (variable, lower, upper))
+    )
 
 
-@atom("func.quad_general.axis_coefficient")
-def quad_coefficient_from_axis(a, axis):
-    return -2 * a * axis
+@atom("prob.continuous.variance")
+def continuous_variance(pdf, variable, lower, upper):
+    # ACMMM166
+    # Var(X) = E(X^2) - [E(X)]^2 for a normalized PDF on the support.
+    pdf, variable, lower, upper, _ = _integral_bounds(
+        pdf, variable, lower, upper, require_normalized=True
+    )
+
+    mean = sp.integrate(variable * pdf, (variable, lower, upper))
+    second_moment = sp.integrate(
+        variable ** 2 * pdf, (variable, lower, upper)
+    )
+    return sp.simplify(second_moment - mean ** 2)
 
 
-@atom("func.notation.evaluate")
-def notation_evaluate(coeffs, x):
-    out = 0
-    for k in coeffs:
-        out = out * x + k
-    return out
+@atom("prob.continuous.linear_transform")
+def continuous_linear_transform(mean, standard_deviation, multiplier, shift):
+    # ACMMM167
+    # If Y = aX + b:
+    # E(Y) = a E(X) + b and SD(Y) = |a| SD(X).
+    mean = sp.sympify(mean)
+    standard_deviation = sp.sympify(standard_deviation)
+    multiplier = sp.sympify(multiplier)
+    shift = sp.sympify(shift)
+
+    if standard_deviation.is_nonnegative is not True:
+        raise ValueError("standard deviation must be non-negative")
+
+    return (
+        sp.simplify(multiplier * mean + shift),
+        sp.simplify(sp.Abs(multiplier) * standard_deviation),
+    )
 
 
-@atom("func.hyperbola.vertical_asymptote")
-def hyperbola_vertical_asymptote(b):
-    return b
+@atom("prob.normal.standardize")
+def normal_standardize(value, mean, standard_deviation):
+    # ACMMM169
+    # z = (x - mu) / sigma.
+    value = sp.sympify(value)
+    mean = sp.sympify(mean)
+    standard_deviation = sp.sympify(standard_deviation)
+
+    if standard_deviation.is_positive is not True:
+        raise ValueError("standard deviation must be positive")
+
+    return sp.simplify(
+        (value - mean) / standard_deviation
+    )
+
+# Topic 3. Interval estimates for proportions
+
+@atom("prob.proportion.distribution")
+def proportion_distribution(p, sample_size):
+    # ACMMM174
+    # E(p_hat) = p and SD(p_hat) = sqrt[p(1-p)/n].
+    p = sp.sympify(p)
+    sample_size = sp.sympify(sample_size)
+
+    if p.is_real is not True:
+        raise ValueError("p must be real")
+    if not bool(0 <= p <= 1):
+        raise ValueError("p must be between 0 and 1")
+    if not bool(sample_size > 0):
+        raise ValueError("sample size must be positive")
+
+    return (
+        sp.simplify(p),
+        sp.simplify(sp.sqrt(p * (1 - p) / sample_size)),
+    )
 
 
-@atom("func.hyperbola.horizontal_asymptote")
-def hyperbola_horizontal_asymptote(d):
-    return d
+@atom("prob.proportion.confidence_interval")
+def proportion_confidence_interval(sample_proportion, sample_size, z):
+    # ACMMM178
+    # p_hat +/- z sqrt[p_hat(1-p_hat)/n].
+    sample_proportion = sp.sympify(sample_proportion)
+    sample_size = sp.sympify(sample_size)
+    z = sp.sympify(z)
+
+    if not bool(0 <= sample_proportion <= 1):
+        raise ValueError("sample proportion must be between 0 and 1")
+    if not bool(sample_size > 0):
+        raise ValueError("sample size must be positive")
+    if not bool(z >= 0):
+        raise ValueError("z must be non-negative")
+
+    margin = z * sp.sqrt(
+        sample_proportion * (1 - sample_proportion) / sample_size
+    )
+
+    return (
+        sp.simplify(sample_proportion - margin),
+        sp.simplify(sample_proportion + margin),
+    )
 
 
-@atom("func.transform.vertical_translation")
-def transform_vertical_translation(y, a):
-    return y + a
+@atom("prob.proportion.margin_error")
+def proportion_margin_error(sample_proportion, sample_size, z):
+    # ACMMM179
+    # E = z sqrt[p_hat(1-p_hat)/n].
+    sample_proportion = sp.sympify(sample_proportion)
+    sample_size = sp.sympify(sample_size)
+    z = sp.sympify(z)
+
+    if not bool(0 <= sample_proportion <= 1):
+        raise ValueError("sample proportion must be between 0 and 1")
+    if not bool(sample_size > 0):
+        raise ValueError("sample size must be positive")
+    if not bool(z >= 0):
+        raise ValueError("z must be non-negative")
+
+    return sp.simplify(
+        z * sp.sqrt(
+            sample_proportion * (1 - sample_proportion) / sample_size
+        )
+    )
 
 
+@atom("prob.proportion.standardize")
+def proportion_standardize(sample_proportion, population_proportion, sample_size):
+    # ACMMM176
+    # (p_hat - p) / sqrt[p_hat(1-p_hat)/n].
+    sample_proportion = sp.sympify(sample_proportion)
+    population_proportion = sp.sympify(population_proportion)
+    sample_size = sp.sympify(sample_size)
 
+    if not bool(0 <= sample_proportion <= 1):
+        raise ValueError("sample proportion must be between 0 and 1")
+    if not bool(0 <= population_proportion <= 1):
+        raise ValueError("population proportion must be between 0 and 1")
+    if not bool(sample_size > 0):
+        raise ValueError("sample size must be positive")
 
-@atom("func.transform.horizontal_translation")
-def transform_horizontal_translation(x, h):
-    return x + h
+    denominator = sp.sqrt(
+        sample_proportion * (1 - sample_proportion) / sample_size
+    )
+    if denominator == 0:
+        raise ValueError("standardising denominator must be non-zero")
 
-
-
-
-@atom("func.transform.vertical_dilation")
-def transform_vertical_dilation(y, c):
-    return c * y
-
-
-
-
-@atom("func.direct_proportion.evaluate")
-def direct_proportion_evaluate(k, x):
-    return k * x
-
-
-@atom("func.transform.horizontal_dilation")
-def transform_horizontal_dilation(x, k):
-    return Fraction(x, k)
-
-
-
-
-@atom("func.sqrt.principal")
-def sqrt_principal(t):
-    return sp.sqrt(t)
+    return sp.simplify(
+        (sample_proportion - population_proportion) / denominator
+    )

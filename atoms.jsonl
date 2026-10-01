@@ -1,23 +1,20 @@
-{"id":"func.direct_proportion.constant_ratio","unit":"MM1","statement":"If x and y are in direct proportion then y = kx, so the constant is k = y/x for nonzero x.","source":"ACMMM002"}
-{"id":"func.linear_solve.one_step","unit":"MM1","statement":"A linear equation of the form ax = b has solution x = b/a, defined when a ≠ 0.","source":"ACMMM005"}
-{"id":"func.quad_general.y_intercept","unit":"MM1","statement":"The y-intercept of y = ax² + bx + c is c.","source":"ACMMM011"}
-{"id":"func.quad_general.axis","unit":"MM1","statement":"The axis of symmetry of y = ax² + bx + c is x = −b/2a.","source":"ACMMM011"}
-{"id":"func.inv_proportion.definition","unit":"MM1","statement":"If y is inversely proportional to x then y = k/x, so the constant is k = xy.","source":"ACMMM012"}
-{"id":"func.hyperbola.vertical_asymptote","unit":"MM1","statement":"The vertical asymptote of y = a/(x−b) is x = b.","source":"ACMMM013"}
-{"id":"func.hyperbola.horizontal_asymptote","unit":"MM1","statement":"The horizontal asymptote of y = a/(x−b) + d is y = d.","source":"ACMMM013"}
-{"id":"func.poly.quadratic_two_linear","unit":"MM1","statement":"(x−a)(x−b) = x² − (a+b)x + ab.","source":"ACMMM016"}
-{"id":"func.poly.factor_theorem","unit":"MM1","statement":"(x−a) is a factor of polynomial p(x) if and only if p(a) = 0.","source":"ACMMM018"}
-{"id":"func.poly.cubic_factor_quotient","unit":"MM1","statement":"If (x−a) is a factor of a cubic p(x), then p(x) = (x−a)q(x) where q(x) is a quadratic polynomial.","source":"ACMMM018"}
-{"id":"func.notation.evaluate","unit":"MM1","statement":"f(a) is the value of f(x) obtained by substituting x = a into the rule for f.","source":"ACMMM023"}
-{"id":"func.transform.vertical_translation","unit":"MM1","statement":"Under a vertical translation of a units, a point with y-coordinate y maps to y + a.","source":"ACMMM025"}
-{"id":"func.transform.horizontal_translation","unit":"MM1","statement":"Under a horizontal translation of h units, a point with x-coordinate x maps to x + h.","source":"ACMMM025"}
-{"id":"func.transform.vertical_dilation","unit":"MM1","statement":"Under a vertical dilation by factor c, a point with y-coordinate y maps to cy.","source":"ACMMM026"}
-{"id":"func.transform.horizontal_dilation","unit":"MM1","statement":"Under the horizontal dilation taking y = f(x) to y = f(kx), a point with x-coordinate x maps to x/k.","source":"ACMMM026"}
-{"id":"func.sqrt.principal","unit":"MM1","statement":"For t >= 0, sqrt(t) denotes the non-negative square root of t; it is the unique s >= 0 with s^2 = t.","source":"ACMMM008"}
-{"id":"func.direct_proportion.evaluate","unit":"MM1","statement":"If y = kx and k is known, the value at x is kx.","source":"ACMMM002"}
-{"id":"func.poly.cubic_three_linear","unit":"MM1","statement":"(x-a)(x-b)(x-c) expands to x^3 - (a+b+c)x^2 + (ab+bc+ca)x - abc.","source":"ACMMM016"}
-{"id":"func.transform.poly_vertical_translation","unit":"MM1","statement":"Translating y = p(x) by a adds a to the constant term.","source":"ACMMM025"}
-{"id":"func.transform.poly_vertical_dilation","unit":"MM1","statement":"Dilating y = p(x) vertically by c multiplies every coefficient by c.","source":"ACMMM026"}
-{"id":"func.hyperbola.evaluate","unit":"MM1","statement":"The value of y = a/(x-b) + d at a given x, defined when x != b.","source":"ACMMM013"}
-{"id":"func.quad_general.axis_coefficient","unit":"MM1","statement":"For y = ax^2 + bx + c with axis x = p, b = -2ap.","source":"ACMMM011"}
-{"id":"func.inv_proportion.evaluate","unit":"MM1","statement":"If y = k/x and k is known, the value at x is k/x.","source":"ACMMM012"}
+{"id":"func.log.definition","unit":"MM4","code":"ACMMM151","description":"Define logarithms as indices: a^x = b is equivalent to x = log_a(b)."}
+{"id":"func.log.product_rule","unit":"MM4","code":"ACMMM152","description":"Use the product rule for logarithms: log_a(xy) = log_a(x) + log_a(y)."}
+{"id":"func.log.quotient_rule","unit":"MM4","code":"ACMMM152","description":"Use the quotient rule for logarithms: log_a(x/y) = log_a(x) - log_a(y)."}
+{"id":"func.log.power_rule","unit":"MM4","code":"ACMMM152","description":"Use the power rule for logarithms: log_a(x^k) = k log_a(x)."}
+{"id":"func.log.decibel","unit":"MM4","code":"ACMMM154","description":"Interpret a logarithmic scale using L = 10 log_10(I/I_0)."}
+{"id":"func.log.equation","unit":"MM4","code":"ACMMM157","description":"Solve log_a(x) = value by converting to x = a^value."}
+{"id":"func.log.natural","unit":"MM4","code":"ACMMM159","description":"Define the natural logarithm ln(x) = log_e(x)."}
+{"id":"func.log.exp_ln_inverse","unit":"MM4","code":"ACMMM160","description":"Use the inverse relationship between e^x and ln(x), including e^(ln x) = x."}
+{"id":"func.log.ln_derivative","unit":"MM4","code":"ACMMM161","description":"Use d/dx(ln x) = 1/x."}
+{"id":"prob.continuous.relative_frequency","unit":"MM4","code":"ACMMM164","description":"Estimate probabilities from relative frequency count/total."}
+{"id":"prob.continuous.probability","unit":"MM4","code":"ACMMM165","description":"Calculate continuous probabilities by integrating a probability density function over an interval."}
+{"id":"prob.continuous.cdf","unit":"MM4","code":"ACMMM165","description":"Calculate a cumulative distribution function by integrating the probability density function from the lower support endpoint."}
+{"id":"prob.continuous.expected_value","unit":"MM4","code":"ACMMM166","description":"Calculate E(X) = integral of x f(x) dx for a continuous random variable."}
+{"id":"prob.continuous.variance","unit":"MM4","code":"ACMMM166","description":"Calculate Var(X) = E(X^2) - [E(X)]^2."}
+{"id":"prob.continuous.linear_transform","unit":"MM4","code":"ACMMM167","description":"For Y = aX + b, determine E(Y) = aE(X)+b and SD(Y) = |a|SD(X)."}
+{"id":"prob.normal.standardize","unit":"MM4","code":"ACMMM169","description":"Standardize a normal-distribution value using z = (x-mu)/sigma."}
+{"id":"prob.proportion.distribution","unit":"MM4","code":"ACMMM174","description":"Determine E(p_hat) = p and SD(p_hat) = sqrt(p(1-p)/n)."}
+{"id":"prob.proportion.standardize","unit":"MM4","code":"ACMMM176","description":"Standardize a sample proportion using (p_hat-p)/sqrt(p_hat(1-p_hat)/n)."}
+{"id":"prob.proportion.confidence_interval","unit":"MM4","code":"ACMMM178","description":"Calculate an approximate confidence interval for a population proportion."}
+{"id":"prob.proportion.margin_error","unit":"MM4","code":"ACMMM179","description":"Calculate E = z sqrt(p_hat(1-p_hat)/n)."}
