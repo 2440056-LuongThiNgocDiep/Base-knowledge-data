@@ -3,6 +3,26 @@ import sympy as sp
 
 from kernel import atom
 
+
+def _require_positive(value, message):
+    """Require an exact SymPy expression to be strictly positive.
+
+    SymPy does not always infer positivity for expressions such as sums of
+    positive logarithms, even when their concrete value is positive.
+    Composite graphs are evaluated on concrete draws, so an exact numerical
+    fallback is safe here.
+    """
+    value = sp.sympify(value)
+    if value.is_positive is True:
+        return value
+    if value.is_real is True:
+        try:
+            if bool(value.evalf(50) > 0):
+                return value
+        except Exception:
+            pass
+    raise ValueError(message)
+
 # Topic 1. The logarithmic function
 
 @atom("func.log.definition")
@@ -30,8 +50,8 @@ def log_product_rule(base, x, y):
 
     if base.is_positive is not True or base == 1:
         raise ValueError("logarithm base must be positive and different from 1")
-    if x.is_positive is not True or y.is_positive is not True:
-        raise ValueError("logarithm arguments must be positive")
+    _require_positive(x, "logarithm arguments must be positive")
+    _require_positive(y, "logarithm arguments must be positive")
 
     return sp.simplify(sp.log(x, base) + sp.log(y, base))
 
@@ -46,8 +66,8 @@ def log_quotient_rule(base, x, y):
 
     if base.is_positive is not True or base == 1:
         raise ValueError("logarithm base must be positive and different from 1")
-    if x.is_positive is not True or y.is_positive is not True:
-        raise ValueError("logarithm arguments must be positive")
+    _require_positive(x, "logarithm arguments must be positive")
+    _require_positive(y, "logarithm arguments must be positive")
 
     return sp.simplify(sp.log(x, base) - sp.log(y, base))
 
@@ -62,8 +82,7 @@ def log_power_rule(base, x, power):
 
     if base.is_positive is not True or base == 1:
         raise ValueError("logarithm base must be positive and different from 1")
-    if x.is_positive is not True:
-        raise ValueError("logarithm argument must be positive")
+    _require_positive(x, "logarithm argument must be positive")
 
     return sp.simplify(power * sp.log(x, base))
 
@@ -100,9 +119,7 @@ def log_natural(value):
     # ln(x) = log_e(x)
     value = sp.sympify(value)
 
-    if value.is_positive is not True:
-        raise ValueError("natural logarithm argument must be positive")
-
+    _require_positive(value, "natural logarithm argument must be positive")
     return sp.log(value)
 
 
@@ -132,6 +149,23 @@ def log_ln_derivative(value):
 
 # Topic 2. Continuous random variables and the normal distribution
 
+def _integral_bounds(pdf, variable, lower, upper, require_normalized=False):
+    pdf = sp.sympify(pdf)
+    variable = sp.sympify(variable)
+    lower = sp.sympify(lower)
+    upper = sp.sympify(upper)
+
+    if not bool(lower < upper):
+        raise ValueError("lower must be less than upper")
+
+    area = sp.simplify(sp.integrate(pdf, (variable, lower, upper)))
+    if not bool(area >= 0):
+        raise ValueError("PDF area must be non-negative")
+    if require_normalized and area != 1:
+        raise ValueError("PDF must integrate to exactly 1 on its support")
+    return pdf, variable, lower, upper, area
+
+
 @atom("prob.continuous.relative_frequency")
 def continuous_relative_frequency(count, total):
     # ACMMM164
@@ -150,15 +184,12 @@ def continuous_relative_frequency(count, total):
 def continuous_probability(pdf, variable, lower, upper):
     # ACMMM165
     # P(lower < X < upper) = integral of f(x) over the interval.
-    variable = sp.sympify(variable)
-    lower = sp.sympify(lower)
-    upper = sp.sympify(upper)
-    pdf = sp.sympify(pdf)
-
-    if not bool(lower < upper):
-        raise ValueError("lower must be less than upper")
-
-    return sp.simplify(sp.integrate(pdf, (variable, lower, upper)))
+    pdf, variable, lower, upper, area = _integral_bounds(
+        pdf, variable, lower, upper
+    )
+    if not bool(area <= 1):
+        raise ValueError("probability must lie in [0, 1]")
+    return area
 
 
 @atom("prob.continuous.cdf")
@@ -173,23 +204,19 @@ def continuous_cdf(pdf, variable, lower_support, value):
     if not bool(lower_support <= value):
         raise ValueError("value must not be below the lower support")
 
-    return sp.simplify(
-        sp.integrate(pdf, (variable, lower_support, value))
-    )
+    result = sp.simplify(sp.integrate(pdf, (variable, lower_support, value)))
+    if not bool(result >= 0) or not bool(result <= 1):
+        raise ValueError("CDF value must lie in [0, 1]")
+    return result
 
 
 @atom("prob.continuous.expected_value")
 def continuous_expected_value(pdf, variable, lower, upper):
     # ACMMM166
-    # E(X) = integral of x f(x) dx.
-    variable = sp.sympify(variable)
-    lower = sp.sympify(lower)
-    upper = sp.sympify(upper)
-    pdf = sp.sympify(pdf)
-
-    if not bool(lower < upper):
-        raise ValueError("lower must be less than upper")
-
+    # E(X) = integral of x f(x) dx over the full support.
+    pdf, variable, lower, upper, _ = _integral_bounds(
+        pdf, variable, lower, upper, require_normalized=True
+    )
     return sp.simplify(
         sp.integrate(variable * pdf, (variable, lower, upper))
     )
@@ -198,20 +225,15 @@ def continuous_expected_value(pdf, variable, lower, upper):
 @atom("prob.continuous.variance")
 def continuous_variance(pdf, variable, lower, upper):
     # ACMMM166
-    # Var(X) = E(X^2) - [E(X)]^2.
-    variable = sp.sympify(variable)
-    lower = sp.sympify(lower)
-    upper = sp.sympify(upper)
-    pdf = sp.sympify(pdf)
-
-    if not bool(lower < upper):
-        raise ValueError("lower must be less than upper")
+    # Var(X) = E(X^2) - [E(X)]^2 for a normalized PDF on the support.
+    pdf, variable, lower, upper, _ = _integral_bounds(
+        pdf, variable, lower, upper, require_normalized=True
+    )
 
     mean = sp.integrate(variable * pdf, (variable, lower, upper))
     second_moment = sp.integrate(
         variable ** 2 * pdf, (variable, lower, upper)
     )
-
     return sp.simplify(second_moment - mean ** 2)
 
 
