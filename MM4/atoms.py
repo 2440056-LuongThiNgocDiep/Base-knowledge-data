@@ -141,8 +141,10 @@ def log_ln_derivative(value):
     # d/dx (ln x) = 1/x, evaluated at x = value.
     value = sp.sympify(value)
 
-    if value.is_zero is True:
-        raise ValueError("value must not be zero")
+    # The real-valued natural logarithm is defined only for x > 0.
+    # Therefore its derivative 1/x is valid here only at positive points.
+    if value.is_positive is not True:
+        raise ValueError("natural-log derivative point must be positive")
 
     return sp.simplify(1 / value)
 
